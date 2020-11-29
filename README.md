@@ -1,4 +1,4 @@
-# MachineLeraningProject
+# MachineLearningProject
 A school project based on Tensorflow/Keras librairies
 
 # Instructions
