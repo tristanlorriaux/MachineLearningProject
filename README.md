@@ -1,7 +1,7 @@
 # MachineLeraningProject
 A school project based on Tensorflow/Keras librairies
 
-#Instructions
+# Instructions
 
 (fr) Ce projet suit les parties de l'énoncé.
 Il est décomposé en dossiers. Chaque dossier contient des parties de code.
