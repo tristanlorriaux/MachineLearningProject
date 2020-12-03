@@ -29,7 +29,10 @@ A essayer sur le code (le graphe ne fonctionne que en 2 compo, logique pour du 3
 
 WORK: Try to display some MNIST pictures with different n_components.
 An interesting feature is PCA.explained_variance_ratio_.
-fait (voir graphes)
+
+
+![alt text](https://raw.githubusercontent.com/tristanlorriaux/MachineLearningProject/main/2.jpg)
+
 
 
 WORK: Explain these values according to your understanding of PCA and use these values to fit n_components.
