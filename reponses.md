@@ -7,6 +7,8 @@ _WORK 1_ : Les données sont dans le tableau d’images X, aléatoirement. Les v
 _WORK 2_ : De manière purement arbitraire : oui. 
 NB : On pourrait faire la variance et la moyenne sur les vérités terrains pour observer.
 
+![alt text](tristanlorriaux/MachineLearningProject/1.jpg) 
+
 # 2.  Unsupervised Machine Learning
 
 **2.1. Dimensionality reduction**
