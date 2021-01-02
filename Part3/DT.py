@@ -1,10 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn import datasets, svm, metrics
+from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
 
 
 # PreProcessing des données
+
 
 X = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_X_28x28.npy')
 Y = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_y.npy')
@@ -12,12 +14,12 @@ Y = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_y.npy')
 
 Xr= X.reshape(70000,784)/255.0 # On reshape les données
 
-x_train,x_test,y_train,y_test=train_test_split(Xr,Y,train_size=0.5,shuffle=False) #On split entre test et train
+x_train,x_test,y_train,y_test=train_test_split(Xr,Y,train_size=0.1,shuffle=False) #On split entre test et train
 print("Préprocessing terminé")
 
-#SVM
+#Naive Bayes Classifier
 
-clf = svm.SVC(gamma=0.001)
+clf = DecisionTreeClassifier()
 
 # Apprentissage sur les données train
 clf.fit(x_train, y_train)
