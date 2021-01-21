@@ -12,4 +12,7 @@ for i in range (100) :
     plt.show()
     plt.clf
 
-
+moy = np.average(Y)
+var = np.std(Y)
+print("Moyenne : ", moy)
+print("Variance : ", var)
