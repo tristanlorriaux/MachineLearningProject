@@ -42,6 +42,7 @@ explained_variance = pca.explained_variance_ratio_.sum()
 print('Variance explicite par composante principale: {}'.format(pca.explained_variance_ratio_))
 print ("Avec {} composantes, l'explained variance is {}" .format(n_components, explained_variance))
 
+
 #On trace sur un graphe 2D (axes = principales composantes) > on regarde la distrib par chiffre
 plt.figure(figsize=(16,10))
 sns.scatterplot(
@@ -52,6 +53,5 @@ sns.scatterplot(
     legend="full",
     alpha=0.3,
 )
-plt.title("PCA sur x_train",fontsize=25,
-          color="red")
+plt.title("PCA sur x_train",fontsize=20)
 plt.show()

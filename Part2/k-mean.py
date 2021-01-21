@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.metrics.cluster import homogeneity_score
+from sklearn.metrics import confusion_matrix
+import seaborn as sns;
 
 n_components = 2
 k = 10
@@ -27,7 +29,10 @@ for k in range(1, 15):
     disto.append(kmeans.inertia_)
 
 plt.figure(figsize=(15, 6)) #On trace la distorsion en fonction des clusters,
-plt.plot(range(1, 15), disto, marker="o")# ie Somme des distances au carré des échantillons à leur centre de cluster le plus proche
+plt.plot(range(1, 15), disto, marker="x")# ie Somme des distances au carré des échantillons à leur centre de cluster le plus proche
+plt.title("Distorsion en fonction du nombre de clusters")
+plt.xlabel("Nombre de clusters K")
+plt.ylabel("Distorsion")
 plt.show()
 
 ##Fin de l'affichage de la distorsion en fonction du nombre de clusters
@@ -36,6 +41,7 @@ plt.show()
 #On fait la PCA
 pca = PCA(n_components=n_components)
 pca_result = pca.fit_transform(x_train)#Résultat de la PCA
+pca_test = pca.fit_transform(x_test)
 
 #On fait le KMeans(un "vrai" cette fois)
 kmeans = KMeans(init ="k-means++",n_clusters = 10)
@@ -85,3 +91,26 @@ plt.show()
 
 #On imprime finalement le score d'homogénéité
 print("Le score d'homogénéité entre la prédiction et la vérité terrain est de {}".format(homogeneity_score(y_train, kmeans.labels_)))
+
+#On affiche les résultats sur le jeu de test
+kmeans = KMeans(init ="k-means++",n_clusters = 10)
+labels = kmeans.fit(pca_test).predict(pca_test)
+plt.scatter(pca_test[:, 0], pca_test[:, 1], c=labels, s=10, cmap='viridis');
+plt.scatter(centroids[:, 0], centroids[:, 1], c='black', s=20, cmap='viridis', marker='x');
+plt.title("Un clustering sur x_test. Les centroïdes sont marqués en noir")
+plt.show()
+
+#Test du K-Means sans PCA
+kmeans = KMeans(init ="k-means++",n_clusters = 10)
+kmeans = kmeans.fit(x_train)
+print("Le score d'homogénéité entre la prédiction et la vérité terrain sans PCA est de {}".format(homogeneity_score(y_train, kmeans.labels_)))
+
+#Matrice de confusion
+labels_kmeans = kmeans.predict(x_test)
+mat_kmeans = confusion_matrix(y_test, labels_kmeans)
+sns.heatmap(mat_kmeans.T, square=True, annot=True, fmt='d', cbar=False,
+            xticklabels="0123456789",
+            yticklabels="0123456789")
+plt.xlabel('Vérité terrain')
+plt.ylabel('Label prédit');
+plt.show()
