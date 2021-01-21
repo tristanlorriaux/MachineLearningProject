@@ -12,7 +12,7 @@ Y = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_y.npy')
 
 Xr= X.reshape(70000,784)/255.0 # On reshape les données
 
-x_train,x_test,y_train,y_test=train_test_split(Xr,Y,train_size=0.5,shuffle=False) #On split entre test et train
+x_train,x_test,y_train,y_test=train_test_split(Xr,Y,train_size=0.7,shuffle=False) #On split entre test et train
 print("Préprocessing terminé")
 
 #SVM

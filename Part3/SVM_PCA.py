@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets, svm, metrics
 from sklearn.decomposition import PCA
 
-n_components = 2
+n_components = 18
 
 # PreProcessing des données
 
@@ -20,7 +20,7 @@ Xr= X.reshape(70000,784)/255.0 # On reshape les données
 pca = PCA(n_components=n_components)
 reduced_data = pca.fit_transform(Xr) #Résultat de la PCA
 
-x_train,x_test,y_train,y_test=train_test_split(reduced_data,Y,train_size=0.5,shuffle=False) #On split entre test et train
+x_train,x_test,y_train,y_test=train_test_split(reduced_data,Y,train_size=0.7,shuffle=False) #On split entre test et train
 print("Préprocessing terminé")
 
 
