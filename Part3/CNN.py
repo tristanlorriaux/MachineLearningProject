@@ -10,9 +10,9 @@ from tensorflow.keras.losses import SparseCategoricalCrossentropy
 
 #PreProcessing des données
 
-
-X = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_X_28x28.npy')
-Y = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_y.npy')
+DATA_PATH = '' #Insérez le chemin des fichiers 
+X = np.load(DATA_PATH + '/MNIST_X_28x28.npy')
+Y = np.load(DATA_PATH + '/MNIST_y.npy')
 
 Xr= X.reshape(70000,784)/255.0 #On reshape les données
 x_train,x_test,y_train,y_test=train_test_split(Xr,Y,train_size=0.7, random_state=41) #On split entre test et train
