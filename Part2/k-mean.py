@@ -5,16 +5,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.metrics.cluster import homogeneity_score
 from sklearn.metrics import confusion_matrix
-import seaborn as sns;
+import seaborn as sns
+from scipy.stats import mode
 
 n_components = 2
 k = 10
 
 #PreProcessing des données
-
-X = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_X_28x28.npy')
-Y = np.load('C:/Users/titil/Desktop/MachineLearningProject/Part2/MNIST_y.npy')
-
+DATA_PATH = 'C:/Users/Gabin Durteste/Downloads/MNIST' #Insérez le chemin des fichiers 
+X = np.load(DATA_PATH + '/MNIST_X_28x28.npy')
+Y = np.load(DATA_PATH + '/MNIST_y.npy')
 
 Xr= X.reshape(70000,784)/255.0 #On reshape les données
 
@@ -106,7 +106,14 @@ kmeans = kmeans.fit(x_train)
 print("Le score d'homogénéité entre la prédiction et la vérité terrain sans PCA est de {}".format(homogeneity_score(y_train, kmeans.labels_)))
 
 #Matrice de confusion
-labels_kmeans = kmeans.predict(x_test)
+clusters = kmeans.predict(x_test)
+labels_kmeans = np.zeros_like(clusters)
+
+for i in range(k):
+    mask_kmeans = (clusters == i)
+    labels_kmeans[mask_kmeans] = mode(y_test[mask_kmeans])[0]##On postule que la valeur qui ressort le plus souvent correspond au label du cluster
+
+
 mat_kmeans = confusion_matrix(y_test, labels_kmeans)
 sns.heatmap(mat_kmeans.T, square=True, annot=True, fmt='d', cbar=False,
             xticklabels="0123456789",
